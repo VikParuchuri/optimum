@@ -174,7 +174,7 @@ class GPT2OnnxConfig(TextDecoderOnnxConfig):
     def values_override(self) -> Optional[Dict[str, Any]]:
         pad_value_override = {}
         if not getattr(self._config, "pad_token_id", None):
-            pad_value_override = {"pad_token_id": 0}
+            pad_value_override = {"pad_token_id": 50256}
         super_values_override = super().values_override
         if super_values_override:
             return {**super_values_override, **pad_value_override}
