@@ -344,8 +344,10 @@ def main_export(
         force_download=force_download,
         trust_remote_code=trust_remote_code,
         framework=framework,
-        torch_dtype=torch_dtype,
+        torch_dtype=None,
     )
+    if fp16:
+        model.half()
 
     if task != "stable-diffusion" and task + "-with-past" in TasksManager.get_supported_tasks_for_model_type(
         model.config.model_type.replace("_", "-"), "onnx"
